@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style = "text-align: center;">Picks and Conviction</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class = "listContainer">
+    <table>
+      <tr>
+        <th>
+          code
+        </th>
+        <th>
+          reason
+        </th>
+        <th>
+          win
+        </th>
+        <th>
+          conviction
+        </th>
+        <th>
+
+        </th>
+      </tr>
+
+      <tr *ngFor = "let stock of stockPick">
+        <td>{{ stock.code }}</td>
+        <td>{{ stock.reason }}</td>
+        <td>{{ stock.win }} </td>
+        <td>{{ stock.conviction }}</td>
+        <td (click) = "editStock(stock)">Edit</td>
+      </tr>
+    </table>
+    <ion-button (click) = "submitStock()">Add</ion-button>
+  </div>
+
+  <ion-card class="welcome-card">
+    <ion-card-content>
+      <div id="highcharts"></div>
+    </ion-card-content>
+  </ion-card> 
+
+</ion-content>
