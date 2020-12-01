@@ -45,8 +45,12 @@ export class StockPicksPage implements OnInit {
     await modal.present();
 
     return await modal.onWillDismiss().then(x => {
-      console.log('editted');
-      this.plotStockChart();
+      if(x.data) {
+        console.log('editted');
+        this.getStocks();
+      } else {
+        alert('failed to edit');
+      }
     });
   }
 
@@ -62,8 +66,13 @@ export class StockPicksPage implements OnInit {
     await modal.present();
 
     return await modal.onWillDismiss().then(x => {
-      console.log('added');
-      this.plotStockChart();
+      console.log(x);
+      if(x.data){
+        console.log('added');
+        this.getStocks();
+      } else {
+        alert('failed to add');
+      }
     });
   }
 
@@ -73,9 +82,6 @@ export class StockPicksPage implements OnInit {
       this.cd.detectChanges();
       this.plotStockChart();
     });
-
-  
-    console.log(this.stockPick.filter(x => x.conviction == 1).length);
   }
 
   async presentModal() {

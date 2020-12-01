@@ -51,20 +51,19 @@ export class StockInputComponent implements OnInit {
   }
 
   editStock(stock: stockPick){
-    stock.conviction = 5;
-    this.stockService.editStockPick(stock);
-    this.dismiss();
+    const temp = this.stockService.editStockPick(stock).subscribe(x => {
+      this.dismiss(x)
+    });
   }
 
   submitStock(stock){
-    this.stockService.insertStockPick(stock);
-    this.dismiss();
+    const temp = this.stockService.insertStockPick(stock).subscribe(x => {
+      this.dismiss(x)
+    });
   }
 
-  dismiss() {
-    this.modal.dismiss({
-      'dismissed': true
-    });
+  dismiss(temp) {
+    this.modal.dismiss(temp);
   }
 
   guidGenerator() {
